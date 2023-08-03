@@ -16,8 +16,8 @@
 
     <ImageView
         android:id="@+id/imgBack"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/ic_back"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="User Profile"
-        android:textSize="24dp"
+        android:textSize="28dp"
         android:textColor="@color/black"
         android:fontFamily="@font/rounded_black"
         android:gravity="center"
@@ -48,11 +48,11 @@
         android:layout_marginTop="120dp"/>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="42dp"
-        android:layout_height="42dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         app:layout_constraintBottom_toBottomOf="@id/imgProfile"
         app:layout_constraintEnd_toEndOf="@id/imgProfile"
-        app:cardCornerRadius="42dp"
+        app:cardCornerRadius="60dp"
         app:cardElevation="18dp">
 
         <LinearLayout
