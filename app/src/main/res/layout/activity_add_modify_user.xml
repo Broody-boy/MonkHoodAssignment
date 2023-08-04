@@ -160,4 +160,37 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="22dp"/>
 
+    <TextView
+        android:id="@+id/tvlabelDOB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/etPhone"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Date of Birth"
+        android:textSize="17sp"
+        android:textColor="@color/label_color"
+        android:textStyle="bold"
+        android:fontFamily="@font/rounded_medium"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"/>
+
+    <EditText
+        android:id="@+id/tvDOB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:drawableEnd="@drawable/ic_edit"
+        android:drawablePadding="5dp"
+        android:drawableTint="@color/my_color_blue"
+        android:background="@null"
+        android:hint="Tap to open Date Picker"
+        android:textColorHint="@color/my_color_mid_gray"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:fontFamily="@font/rounded_regular"
+        app:layout_constraintTop_toBottomOf="@id/tvlabelDOB"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="22dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
