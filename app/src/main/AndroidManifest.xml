@@ -13,7 +13,7 @@
         android:theme="@style/Theme.MonkHoodAssignment"
         tools:targetApi="31">
         <activity
-            android:name=".AddModifyUser"
+            android:name=".ModifyUser"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
