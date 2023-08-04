@@ -193,4 +193,16 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="22dp"/>
 
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="SAVE"
+        android:background="@drawable/bg_save_btn"
+        android:layout_marginBottom="40dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
