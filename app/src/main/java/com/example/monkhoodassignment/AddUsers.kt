@@ -2,8 +2,10 @@ package com.example.monkhoodassignment
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,11 +13,15 @@ import android.provider.MediaStore
 import android.util.Patterns
 import android.widget.Toast
 import com.example.monkhoodassignment.databinding.ActivityAddUsersBinding
+import java.util.UUID
 
 class AddUsers : AppCompatActivity() {
 
     private lateinit var binding : ActivityAddUsersBinding
+
+    private var UUIDString : String? = null
     private var imgBmp : Bitmap? = null
+    private lateinit var sharedPreferences : SharedPreferences
 
     private enum class MODE{
         OPEN_CAMERA, OPEN_EXT_STORAGE
@@ -27,6 +33,8 @@ class AddUsers : AppCompatActivity() {
         binding = ActivityAddUsersBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        UUIDString = generateUUID()
+
         binding.imgAddPic.setOnClickListener {
             displayImageDialog()
         }
@@ -35,6 +43,11 @@ class AddUsers : AppCompatActivity() {
             if (!validatAllFields()) {return@setOnClickListener}
         }
     }
+
+    private fun generateUUID() : String{
+        return UUID.randomUUID().toString()
+    }
+
     private fun validatAllFields(): Boolean {
 
         if(imgBmp == null){
@@ -124,6 +137,21 @@ class AddUsers : AppCompatActivity() {
             }
         }
 
-
     }
+
+    private fun StoreLocallyAndReturnLink(imgBmp: Bitmap?, uuidString: String?): String? {
+        return null
+    }
+
+    private fun saveToSharedPreference() {
+        sharedPreferences = this.getSharedPreferences("UsersCollection", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        val imglink = StoreLocallyAndReturnLink(imgBmp, UUIDString)
+        val currentUserString = "${UUIDString}, ${binding.etName.text},${imglink}, ${binding.etMail.text},${binding.etPhone.text},${binding.tvDOB.text}"
+
+        editor.putString(binding.etPhone.text.toString(), currentUserString)
+        editor.apply()
+    }
+
 }
