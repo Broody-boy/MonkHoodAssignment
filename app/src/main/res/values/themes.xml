@@ -3,7 +3,7 @@
     <style name="Base.Theme.MonkHoodAssignment" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="colorPrimary">@color/my_color_blue</item>
+        <item name="colorPrimary">@color/my_color_theme</item>
         <item name="android:statusBarColor">@color/my_color_light_gray</item>
     </style>
 

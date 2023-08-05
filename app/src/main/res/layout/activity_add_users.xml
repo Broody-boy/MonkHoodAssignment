@@ -59,7 +59,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/my_color_blue"
+            android:background="@color/my_color_theme"
             android:gravity="center">
             <ImageView
                 android:layout_width="30dp"
