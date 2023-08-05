@@ -27,5 +27,6 @@
         app:labelVisibilityMode="labeled"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
-        app:itemActiveIndicatorStyle="@android:color/transparent"/>
+        app:itemActiveIndicatorStyle="@android:color/transparent"
+        app:itemRippleColor="@null"/>
 </RelativeLayout>
