@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:orientation="horizontal"
+    android:layout_margin="5dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgProf"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/person"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Arshdeep Singh"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="16dp"/>
+        <TextView
+        android:id="@+id/tvMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="arshdeep@gmail.com"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="16dp"/>
+        <TextView
+            android:id="@+id/tvPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9998712372"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="16dp"/>
+        <TextView
+            android:id="@+id/tvDOB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="24/03/2003"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="16dp"/>
+    </LinearLayout>
+</LinearLayout>
