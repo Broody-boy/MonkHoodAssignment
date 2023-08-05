@@ -7,6 +7,10 @@
         android:title="Shared Preferences" />
 
     <item
+        android:id="@+id/fab"
+        android:title="" />
+
+    <item
         android:id="@+id/firebase"
         android:icon="@drawable/firebase_navbar_images_set"
         android:title="Firebase" />
