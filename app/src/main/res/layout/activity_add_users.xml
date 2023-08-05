@@ -50,6 +50,7 @@
         android:layout_marginTop="130dp"/>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/imgAddPic"
         android:layout_width="60dp"
         android:layout_height="60dp"
         app:layout_constraintBottom_toBottomOf="@id/imgProfile"
