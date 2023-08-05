@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/sharedPreference"
+        android:icon="@drawable/sharedpreference_navbar_images_set"
+        android:title="Shared Preferences" />
+
+    <item
+        android:id="@+id/firebase"
+        android:icon="@drawable/firebase_navbar_images_set"
+        android:title="Firebase" />
+</menu>
