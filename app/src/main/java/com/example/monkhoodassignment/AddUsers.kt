@@ -2,11 +2,14 @@ package com.example.monkhoodassignment
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.DatePickerDialog
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -17,15 +20,26 @@ import com.example.monkhoodassignment.databinding.ActivityAddUsersBinding
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import java.io.ByteArrayOutputStream
+import java.util.Calendar
 import java.util.UUID
 
 class AddUsers : AppCompatActivity() {
 
     private lateinit var binding : ActivityAddUsersBinding
+    private lateinit var pd: ProgressDialog
 
-    private var UUIDString : String? = null
+    private lateinit var UUIDString : String
     private var imgBmp : Bitmap? = null
     private lateinit var sharedPreferences : SharedPreferences
+
+    private var uri: Uri? = null
+    private lateinit var storageRef: StorageReference
+    private lateinit var storage: FirebaseStorage
+    private lateinit var firestore : FirebaseFirestore
 
     private enum class MODE{
         OPEN_CAMERA, OPEN_EXT_STORAGE
@@ -33,6 +47,11 @@ class AddUsers : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        pd = ProgressDialog(this)
+        firestore = FirebaseFirestore.getInstance()
+        storage = FirebaseStorage.getInstance()
+        storageRef = storage.reference
 
         binding = ActivityAddUsersBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -43,8 +62,23 @@ class AddUsers : AppCompatActivity() {
             displayImageDialog()
         }
 
+        binding.tvDOB.setOnClickListener {
+            val c = Calendar.getInstance()
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(this,{view, year, monthOfYear, dayOfMonth ->
+                binding.tvDOB.setText("${dayOfMonth}/${monthOfYear + 1}/${year}")   //it is an et, not tv
+            }, year, month, day)
+
+            datePickerDialog.show()
+        }
+
         binding.btnSave.setOnClickListener {
             if (!validatAllFields()) {return@setOnClickListener}
+            saveToSharedPreference()
+            uploadImageToFirebaseStorage(imgBmp)
         }
     }
 
@@ -176,6 +210,34 @@ class AddUsers : AppCompatActivity() {
 
         editor.putString(binding.etPhone.text.toString(), currentUserString)
         editor.apply()
+    }
+
+    private fun uploadImageToFirebaseStorage(bmpToSave: Bitmap?) {
+        val baos = ByteArrayOutputStream()
+        bmpToSave?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+
+        val storagePath = storageRef.child("Photos/${UUID.randomUUID()}.jpg")
+        val uploadTask = storagePath.putBytes(data)
+
+        uploadTask.addOnSuccessListener { it ->
+            val task = it.metadata?.reference?.downloadUrl
+            task?.addOnSuccessListener {
+                uri = it
+                saveToFirebase(uri)
+            }
+            Toast.makeText(this, "Image uploaded successfully!", Toast.LENGTH_SHORT).show()
+        }.addOnFailureListener {
+            Toast.makeText(this, "Failed to upload image!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun saveToFirebase(uri: Uri?) {
+        val hashMap = hashMapOf<Any, Any>("UUID" to UUIDString, "name" to binding.etName.text.toString(),
+            "imgProfile" to uri.toString(), "mail" to binding.etMail.text.toString(),
+            "phone" to binding.etPhone.text.toString(),"dob" to binding.tvDOB.text.toString())
+
+        firestore.collection("Users").document(UUIDString).set(hashMap)
     }
 
 }
