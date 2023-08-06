@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         val firebase_frag = FirebaseFragment()
         val sharedPref_frag = SharedPrefencesFragment()
 
-        setFragment(firebase_frag)
+        setFragment(sharedPref_frag)
 
         navView.setOnItemSelectedListener {
             when(it.itemId){

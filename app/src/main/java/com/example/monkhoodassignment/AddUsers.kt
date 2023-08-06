@@ -80,6 +80,11 @@ class AddUsers : AppCompatActivity() {
             if (!validatAllFields()) {return@setOnClickListener}
             saveToSharedPreference()
             uploadImageToFirebaseStorage(imgBmp)
+            finish()
+        }
+
+        binding.imgBack.setOnClickListener {
+            finish()
         }
     }
 

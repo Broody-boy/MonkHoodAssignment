@@ -65,6 +65,7 @@ class ModifyUser : AppCompatActivity() {
 
 
         vm.getUserFromUUID(CurrentUUIDtoBeModified){ user->
+            uri = Uri.parse(user!!.imgProfile)
             Glide.with(this).load(user!!.imgProfile).into(binding.imgProfile)
             binding.etName.setText(user!!.name)
             binding.etMail.setText(user!!.mail)
@@ -93,6 +94,11 @@ class ModifyUser : AppCompatActivity() {
             if (!validatAllFields()) {return@setOnClickListener}
             updateInSharedPreference()
             uploadImageToFirebaseStorage(imgBmp)
+            finish()
+        }
+
+        binding.imgBack.setOnClickListener {
+            finish()
         }
     }
 
