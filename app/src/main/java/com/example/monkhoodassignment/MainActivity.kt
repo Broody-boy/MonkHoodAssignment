@@ -3,16 +3,22 @@ package com.example.monkhoodassignment
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.monkhoodassignment.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
+    var firstTime = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if(firstTime)
+            Toast.makeText(this@MainActivity, "Hi, I am Arshdeep Singh", Toast.LENGTH_LONG).show()
+        firstTime = false
 
         binding.fabAdd.setOnClickListener {
             startActivity(Intent(this, AddUsers::class.java))

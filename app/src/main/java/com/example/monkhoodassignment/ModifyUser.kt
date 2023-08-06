@@ -240,7 +240,7 @@ class ModifyUser : AppCompatActivity() {
                 uri = it
                 updateInFirebase(uri)
             }
-            Toast.makeText(this, "Image uploaded successfully!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "updated in firebase successfully!", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener {
             Toast.makeText(this, "Failed to upload image!", Toast.LENGTH_SHORT).show()
         }

@@ -231,7 +231,7 @@ class AddUsers : AppCompatActivity() {
                 uri = it
                 saveToFirebase(uri)
             }
-            Toast.makeText(this, "Image uploaded successfully!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "added to firebase successfully!", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener {
             Toast.makeText(this, "Failed to upload image!", Toast.LENGTH_SHORT).show()
         }

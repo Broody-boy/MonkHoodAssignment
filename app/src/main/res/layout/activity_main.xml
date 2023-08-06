@@ -7,13 +7,29 @@
     tools:context=".MainActivity"
     android:background="@color/white">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="25dp"
+            android:text="MonkHood Living"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:fontFamily="@font/rounded_regular"
+            android:layout_marginStart="20dp"/>
+    </com.google.android.material.appbar.AppBarLayout>
     <fragment
         android:id="@+id/fragment_holder"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        android:layout_above="@+id/nav_view_bottom"/>
+        android:layout_above="@+id/nav_view_bottom"
+        android:layout_marginTop="60dp"/>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
@@ -46,5 +62,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_add"
+        android:backgroundTint="#7F9FF5"
         app:layout_anchor="@id/bottomAppBar"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
