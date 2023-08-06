@@ -39,4 +39,11 @@ class SharedPrefencesFragment : Fragment() {
             adapter.setUserList(it)
         })
     }
+
+    override fun onResume() {
+        super.onResume()
+        vm.getAllUsersfromSharedPreference().observe(viewLifecycleOwner, Observer {
+            adapter.setUserList(it)
+        })
+    }
 }
