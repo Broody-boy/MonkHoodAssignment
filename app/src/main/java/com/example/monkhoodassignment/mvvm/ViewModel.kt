@@ -77,4 +77,10 @@ class ViewModel : ViewModel() {
         userssp.postValue(userList!!)
         return userssp
     }
+
+    fun removeUserfromSharedPreference(UUIDtoDelete : String){
+        val editor = sharedPreferences.edit()
+        editor.remove(UUIDtoDelete).apply()
+    }
+
 }

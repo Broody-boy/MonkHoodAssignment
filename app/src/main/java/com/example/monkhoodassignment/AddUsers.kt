@@ -208,7 +208,7 @@ class AddUsers : AppCompatActivity() {
         val imglink = StoreLocallyAndReturnLink(imgBmp, UUIDString)
         val currentUserString = "${UUIDString}, ${binding.etName.text},${imglink}, ${binding.etMail.text},${binding.etPhone.text},${binding.tvDOB.text}"
 
-        editor.putString(binding.etPhone.text.toString(), currentUserString)
+        editor.putString(UUIDString, currentUserString)
         editor.apply()
     }
 
