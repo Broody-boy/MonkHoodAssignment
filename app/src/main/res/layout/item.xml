@@ -81,7 +81,7 @@
         android:id="@+id/imgDelete"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/ic_edit"
+        android:src="@drawable/ic_delete"
         android:scaleType="center"
         app:tint="@color/my_color_theme"
         android:layout_marginEnd="10dp"/>
