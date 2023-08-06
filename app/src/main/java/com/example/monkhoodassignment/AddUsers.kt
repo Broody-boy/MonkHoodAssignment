@@ -235,7 +235,7 @@ class AddUsers : AppCompatActivity() {
     private fun saveToFirebase(uri: Uri?) {
         val hashMap = hashMapOf<Any, Any>("UUID" to UUIDString, "name" to binding.etName.text.toString(),
             "imgProfile" to uri.toString(), "mail" to binding.etMail.text.toString(),
-            "phone" to binding.etPhone.text.toString(),"dob" to binding.tvDOB.text.toString())
+            "phone" to binding.etPhone.text.toString().toInt(),"dob" to binding.tvDOB.text.toString())
 
         firestore.collection("Users").document(UUIDString).set(hashMap)
     }

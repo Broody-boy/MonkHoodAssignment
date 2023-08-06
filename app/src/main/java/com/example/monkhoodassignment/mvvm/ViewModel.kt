@@ -1,5 +1,6 @@
 package com.example.monkhoodassignment.mvvm
 
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,8 +13,11 @@ import kotlinx.coroutines.launch
 class ViewModel : ViewModel() {
 
     val usersfb = MutableLiveData<List<User>>()
+    val userssp = MutableLiveData<List<User>>()
 
     val firestore = FirebaseFirestore.getInstance()
+    private lateinit var sharedPreferences : SharedPreferences
+
     fun getAllUsersfromFirebase() : LiveData<List<User>> {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -47,5 +51,28 @@ class ViewModel : ViewModel() {
             .addOnFailureListener { exception ->
                 // Handle any errors that occur during deletion
             }
+    }
+
+    fun getAllUsersfromSharedPreference() : LiveData<List<User>> {
+        val userList = mutableListOf<User>()
+
+        val allEntries = sharedPreferences.all
+
+        for ((key, value) in allEntries) {
+            val userDataArray = (value as String).split(",")
+            if (userDataArray.size == 6) {
+                val UUID = userDataArray[0]
+                val name = userDataArray[1]
+                val profileImage = (userDataArray[2])
+                val email = userDataArray[3]
+                val phone = userDataArray[4]
+                val dob = userDataArray[5]
+                val user = User(UUID, name, profileImage, email, phone.toInt(), dob)
+                userList.add(user)
+            }
+        }
+
+        userssp.postValue(userList!!)
+        return userssp
     }
 }
