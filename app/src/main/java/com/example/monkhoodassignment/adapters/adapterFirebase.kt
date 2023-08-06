@@ -39,7 +39,7 @@ class adapterFirebase : RecyclerView.Adapter<UserViewHolder>() {
 
         holder.imgEdit.setOnClickListener {
             val intent = Intent(holder.itemView.context,ModifyUser::class.java)
-            intent.putExtra("UUID",currentuser.UUID)
+            intent.putExtra("UUID_TO_UPDATE",currentuser.UUID)
             holder.itemView.context.startActivity(intent)
         }
 

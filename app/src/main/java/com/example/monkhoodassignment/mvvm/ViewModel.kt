@@ -84,4 +84,19 @@ class ViewModel : ViewModel() {
         getAllUsersfromSharedPreference()
     }
 
+    fun getUserFromUUID(UUID : String?, callback: (User?) -> Unit) {
+        var user : User? = null
+
+        firestore.collection("Users").document(UUID!!).get()
+            .addOnSuccessListener {document ->
+                if (document!=null) {
+                    user = document.toObject(User::class.java)
+                    callback(user)
+                }
+                else {
+                    callback(null)
+                }
+            }
+    }
+
 }
