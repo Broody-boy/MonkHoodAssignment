@@ -91,7 +91,7 @@ class ModifyUser : AppCompatActivity() {
 
         binding.btnSave.setOnClickListener {
             if (!validatAllFields()) {return@setOnClickListener}
-            //vm.UpdateInSharedPreference()
+            updateInSharedPreference()
             uploadImageToFirebaseStorage(imgBmp)
         }
     }
@@ -211,6 +211,15 @@ class ModifyUser : AppCompatActivity() {
         return null
     }
 
+    private fun updateInSharedPreference() {
+        val editor = sharedPreferences.edit()
+
+        val imglink = StoreLocallyAndReturnLink(imgBmp, CurrentUUIDtoBeModified)
+        val currentUserString = "${CurrentUUIDtoBeModified}, ${binding.etName.text},${imglink}, ${binding.etMail.text},${binding.etPhone.text},${binding.tvDOB.text}"
+
+        editor.putString(CurrentUUIDtoBeModified, currentUserString)
+        editor.apply()
+    }
     private fun uploadImageToFirebaseStorage(bmpToSave: Bitmap?) {
         val baos = ByteArrayOutputStream()
         bmpToSave?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
