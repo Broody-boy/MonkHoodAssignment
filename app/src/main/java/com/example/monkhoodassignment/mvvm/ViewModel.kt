@@ -81,6 +81,7 @@ class ViewModel : ViewModel() {
     fun removeUserfromSharedPreference(UUIDtoDelete : String){
         val editor = sharedPreferences.edit()
         editor.remove(UUIDtoDelete).apply()
+        getAllUsersfromSharedPreference()
     }
 
 }
