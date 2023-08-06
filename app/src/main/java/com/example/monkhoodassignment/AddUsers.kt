@@ -9,10 +9,14 @@ import android.content.SharedPreferences
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.util.Patterns
 import android.widget.Toast
 import com.example.monkhoodassignment.databinding.ActivityAddUsersBinding
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 import java.util.UUID
 
 class AddUsers : AppCompatActivity() {
@@ -139,7 +143,27 @@ class AddUsers : AppCompatActivity() {
 
     }
 
-    private fun StoreLocallyAndReturnLink(imgBmp: Bitmap?, uuidString: String?): String? {
+    private fun StoreLocallyAndReturnLink(imgBmp: Bitmap?, UUIDString: String?): String? {
+        val directory = this.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+
+        if (directory != null) {
+            val file = File(directory, UUIDString + ".jpg")
+            var outputStream: FileOutputStream? = null
+            try {
+                outputStream = FileOutputStream(file)
+                imgBmp?.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                return file.path
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } finally {
+                try {
+                    outputStream?.close()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+
         return null
     }
 
