@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.signature.ObjectKey
 import com.example.monkhoodassignment.ModifyUser
 import com.example.monkhoodassignment.databinding.ItemBinding
 import com.example.monkhoodassignment.modal.User
@@ -30,7 +31,7 @@ class adapterFirebase : RecyclerView.Adapter<UserViewHolder>() {
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val currentuser = alluserslist[position]
-        Glide.with(holder.itemView.context).load(currentuser.imgProfile).into(holder.image)
+        Glide.with(holder.itemView.context).load(currentuser.imgProfile).signature(ObjectKey(System.currentTimeMillis())).into(holder.image)
 
         holder.ItemName.text = currentuser.name
         holder.ItemMail.text = currentuser.mail
