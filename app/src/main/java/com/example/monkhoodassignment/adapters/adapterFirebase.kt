@@ -47,6 +47,9 @@ class adapterFirebase : RecyclerView.Adapter<UserViewHolder>() {
         holder.imgDel.setOnClickListener {
             vm.removeUserfromFirebase(currentuser.UUID!!)
             vm.removeUserfromSharedPreference(currentuser.UUID!!)
+            alluserslist = alluserslist.filterNot { it == alluserslist[position] }
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, alluserslist.size)
         }
     }
 
