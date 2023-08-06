@@ -69,7 +69,7 @@ class ViewModel : ViewModel() {
                 val email = userDataArray[3]
                 val phone = userDataArray[4]
                 val dob = userDataArray[5]
-                val user = User(UUID, name, profileImage, email, phone.toInt(), dob)
+                val user = User(UUID, name, profileImage, email, phone.toLong(), dob)
                 userList.add(user)
             }
         }
