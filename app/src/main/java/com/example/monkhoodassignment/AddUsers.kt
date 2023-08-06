@@ -2,6 +2,7 @@ package com.example.monkhoodassignment
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.DialogInterface
@@ -19,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.ByteArrayOutputStream
+import java.util.Calendar
 import java.util.UUID
 
 class AddUsers : AppCompatActivity() {
@@ -54,6 +56,19 @@ class AddUsers : AppCompatActivity() {
 
         binding.imgAddPic.setOnClickListener {
             displayImageDialog()
+        }
+
+        binding.tvDOB.setOnClickListener {
+            val c = Calendar.getInstance()
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(this,{view, year, monthOfYear, dayOfMonth ->
+                binding.tvDOB.setText("${dayOfMonth}/${monthOfYear + 1}/${year}")   //it is an et, not tv
+            }, year, month, day)
+
+            datePickerDialog.show()
         }
 
         binding.btnSave.setOnClickListener {
