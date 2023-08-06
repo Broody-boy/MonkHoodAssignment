@@ -1,10 +1,12 @@
 package com.example.monkhoodassignment.mvvm
 
+import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.MyApplication
 import com.example.monkhoodassignment.modal.User
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +18,7 @@ class ViewModel : ViewModel() {
     val userssp = MutableLiveData<List<User>>()
 
     val firestore = FirebaseFirestore.getInstance()
-    private lateinit var sharedPreferences : SharedPreferences
+    val sharedPreferences = MyApplication.getAppContext().getSharedPreferences("UsersCollection", Context.MODE_PRIVATE)
 
     fun getAllUsersfromFirebase() : LiveData<List<User>> {
         viewModelScope.launch(Dispatchers.IO) {
